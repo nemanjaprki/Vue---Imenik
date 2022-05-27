@@ -1,0 +1,106 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+
+   <head> 
+    <meta charset="UTF-8"> 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>  
+
+     <style>  
+     .Kontakt {   
+        color:  #092209b9;
+        margin-top: 25px; 
+        margin-left: 65px; 
+     } 
+     .input {  
+        margin-left: 60px;
+        padding: 5px; 
+        color: #144d148c; 
+     } 
+     button {  
+        margin-top: 5px;
+        margin-left: 200px; 
+        color: rgb(101, 194, 101);
+     } 
+     .lista {   
+        color: rgb(6, 83, 54);
+        margin-top: 30px;
+        margin-left: 65px;
+     }
+     .lista button {  
+        color: #8d1919;
+        margin-left: 15px;
+     } 
+   </style>
+
+
+   </head>
+
+      <body> 
+           
+         
+
+         <div id="app">   
+            <div class="Kontakt"> <h3>Unesi kontakt</h3> </div>
+            <div class="input"><i>Ime</i> <input type="text" v-model="NovoIme"> </div> 
+            <div class="input"><i>Broj</i> <input type="text" v-model="NoviBroj"> </div>  
+            <button @click="SacuvajKontakt">Sacuvaj</button>    
+         
+
+            <div class="lista" v-for="(imenik,idx) in imeniku">
+               {{ imenik.Ime }} - {{ imenik.Broj }} 
+               <button @click= "IzbaciStavku(idx)">X</button>
+            </div>       
+      
+            
+         
+             
+         </div>
+         <script>  
+          var mainVue = new Vue ({ 
+              
+              el: "#app", 
+              data: function() { 
+                  return {   
+                       imeniku: 
+                          [ 
+                             
+                 
+                          ], 
+                          NovoIme: "", 
+                          NoviBroj: ""
+
+                  }
+              },  
+
+            methods: { 
+               IzbaciStavku(mesto) { 
+                              this.imeniku.splice(mesto,1) 
+                  
+                           },
+                SacuvajKontakt() { 
+                  this.imeniku.push({    
+                      Ime: this.NovoIme, 
+                      Broj: this.NoviBroj
+                   
+                      })
+                 this.NovoIme= "";
+                 this.NoviBroj= "";
+
+            },
+              
+               setItem(key, value) { 
+                        localStorage.setItem('Ime', 'Broj');
+                    
+                    }
+                    
+            }
+            })
+        
+        
+        </script>
+
+      </body>
+
+
+</html>
